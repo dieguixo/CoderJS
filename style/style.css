@@ -1,0 +1,10 @@
+main {
+    background-color: #2a4635;
+    color: white;
+    text-align: center;
+    height: 500px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+main h1 {
+    align-items: center;
+}
