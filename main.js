@@ -1,4 +1,4 @@
-// Pre Entrega 1 - Diego Mata
+// Pre Entrega 1 - Diego Mata  
 let respuesta = "Si";
 let costo;
 let precio;
@@ -12,8 +12,8 @@ function margenRentabilidad () {
 function cuestionario () {
     while (respuesta == "Si" || respuesta == "si" || respuesta == "SI") {
         let producto = prompt ("Ingrese el nombre del producto: ");
-        costo = prompt ("Ingrese costo del producto: ");
-        precio = prompt ("Ingrese precio de venta: ");
+        costo = prompt ("Ingrese el costo del producto: ");
+        precio = prompt ("Ingrese el precio de venta: ");
         margenRentabilidad ();
         console.log ("El margen de la venta de " + producto + " es de $ " + margen);
         console.log ("Esto significa una rentabilidad del " + rentabilidad + "%");
