@@ -70,5 +70,4 @@ console.log(listaProductos);
 //Se muestra lista de margen y rentabilidad de productos ordenados alfabéticamente
 console.log("Lista de margen y rentabilidad: ")
 console.log(listaChicaAlfabetico);
-//Se destacan los productos de mayor margen y de mayor rentabilidad
 
