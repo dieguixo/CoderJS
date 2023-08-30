@@ -23,21 +23,26 @@ class NuevoProducto {
     }
   }
 //Ciclo para agregar productos con dato de costo y precio. Funcion margenRentabilidad calcula el margen y la rentabilidad con los datos ingresados
-while (respuesta == "Si" || respuesta == "si" || respuesta == "SI") {
-    let nombre = prompt ("Ingrese el nombre del producto: ");
-    costo = parseFloat(prompt ("Ingrese el costo del producto " + nombre));
-    precio = parseFloat(prompt ("Ingrese el precio de venta del producto " + nombre));
-    margenRentabilidad ();
-    const prod = new NuevoProducto (nombre.toUpperCase(), costo, precio, margen, rentabilidad)
-    listaProductos.push(prod)
-    respuesta = prompt ("Desea agregar otro producto a la lista? Si/No ");
-    }
-    if (respuesta == "No" || respuesta == "no" || respuesta == "NO") {
-        console.log (respuesta + "A continuación se presentan los resultados");
-        } else {
-            console.log ("La respuesta ingresada es incorrecta. Vuelva a intentarlo.");
-            respuesta = prompt ("Desea agregar otro producto? Si/No ");
+function cuestionario () {
+    while (respuesta == "Si" || respuesta == "si" || respuesta == "SI") {
+        let nombre = prompt ("Ingrese el nombre del producto: ");
+        costo = parseFloat(prompt ("Ingrese el costo del producto " + nombre));
+        precio = parseFloat(prompt ("Ingrese el precio de venta del producto " + nombre));
+        margenRentabilidad ();
+        const prod = new NuevoProducto (nombre.toUpperCase(), costo, precio, margen, rentabilidad)
+        listaProductos.push(prod)
+        respuesta = prompt ("Desea agregar otro producto a la lista? Si/No ");
         }
+        if (respuesta == "No" || respuesta == "no" || respuesta == "NO") {
+            console.log ("A continuación se presentan los resultados");
+            } else {
+                    alert ("La respuesta ingresada es incorrecta. Vuelva a intentarlo.");
+                    respuesta = prompt ("Desea agregar otro producto a la lista? Si/No ");
+                    cuestionario ();
+                } 
+    }
+cuestionario ();
+
 //Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
 const listaChica = listaProductos.map((item) => {
     return {
