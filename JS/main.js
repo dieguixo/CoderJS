@@ -38,7 +38,7 @@ while (respuesta == "Si" || respuesta == "si" || respuesta == "SI") {
             console.log ("La respuesta ingresada es incorrecta. Vuelva a intentarlo.");
             respuesta = prompt ("Desea agregar otro producto? Si/No ");
         }
-//Se declara un nuevo Array para contener la lista reducida con datos de margen y rentabilidad
+//Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
 const listaChica = listaProductos.map((item) => {
     return {
         nombre: item.nombre,
