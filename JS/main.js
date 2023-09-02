@@ -1,6 +1,7 @@
 // Pre Entrega 2 - Diego Mata  
 // Se definen variables globales
 let respuesta = true
+let yaExiste
 let costo;
 let precio;
 let margen;
@@ -28,7 +29,7 @@ function cuestionario () {
         let nombre = prompt ("Ingrese el nombre del producto: ");
         if (nombre === '') {
             respuesta = false
-          } else {
+        } else {
             costo = parseFloat(prompt ("Ingrese el costo del producto " + nombre));
             while (isNaN(costo)) {
                 alert("No está ingresando un valor válido, vuelva a intentarlo");
@@ -38,13 +39,13 @@ function cuestionario () {
             while (isNaN(precio)) {
                 alert("No está ingresando un valor válido, vuelva a intentarlo");
                 precio = parseFloat(prompt ("Ingrese el precio de venta del producto " + nombre));
-            }
+            }         
             margenRentabilidad ();
             const prod = new NuevoProducto (nombre.toUpperCase(), costo, precio, margen, rentabilidad)
             listaProductos.push(prod)
-          }
-        }
-    }
+        }      
+    }    
+}
 cuestionario ();
 
 //Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
