@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./style/style.css">
-    <title>PreEntrega1-Diego Mata</title>
+    <title>PreEntrega3-Mata</title>
 </head>
 <body>
     <header></header>
@@ -13,8 +13,36 @@
             <h1>Cálculo del margen y de la rentabilidad de los productos del menú</h1>
             <br>
             <br>
-            <p>Por favor, ingrese valores utilizando "." (punto) para números decimales.</p>
+            <p>Ingrese valores utilizando "." (punto) para números decimales.</p>
         </div>
+        <br>
+        <br>
+        <div class="campos">
+            <div class="entrada">
+                <form id="form">
+                    <label for="nombreProd">Ingrese el nombre del producto: </label>
+                    <input class="form__input" type="text" id="nombreProd">
+                    <br>
+                    <br>
+                    <label for="costoProd">Ingrese el costo: </label>
+                    <input class="form__input" type="text" id="costoProd">
+                    <br>
+                    <br>
+                    <label for="precioProd">Ingrese el precio de venta: </label>
+                    <input class="form__input" type="text" id="precioProd">
+                    <div class="campo__button">
+                        <button class="button" type="reset">Limpiar</button>
+                        <input class="button" type="submit" value="Agregar">
+                        <!-- <button id="btnConfirmar" class="button" type="submit">Confirmar</button> -->
+                    </div>
+                </form>
+            </div>
+            <div class="salida">
+                <p>Productos ingresados:</p>
+            </div>
+
+        </div>
+        
     </main>
     <script src="./JS/main.js"></script>
 </body>

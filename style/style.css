@@ -1,10 +1,39 @@
 main {
-    background-color: #2a4635;
-    color: white;
     text-align: center;
-    height: 500px;
     font-family: Arial, Helvetica, sans-serif;
 }
 main h1 {
     align-items: center;
+}
+
+.form__input {
+    width: 100px;
+    margin-right: 50px;
+
+}
+.campo__button {
+    text-align: center;
+    padding-top: 30px;
+}
+.button {
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 10px;
+}
+form {
+    background-color: #2a4635;
+    color: white;
+    padding: 30px 0 30px 0;
+    text-align: right;
+    width: 500px;
+
+}
+.salida {
+    background-color: #2a4635;
+    color: white;
+    width: 100%;
+    margin-left: 5px;
+}
+.campos {
+    display: flex;
 }

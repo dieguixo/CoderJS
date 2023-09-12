@@ -1,12 +1,10 @@
-// Pre Entrega 2 - Diego Mata  
+// Pre Entrega 3 - Diego Mata  
 // Se definen variables globales
-let respuesta = true
-let yaExiste
+
 let costo;
 let precio;
 let margen;
 let rentabilidad;
-let prueba = 0;
 
 //función para el cálculo del margen y de la rentabilidad de los productos a ingresar
 function margenRentabilidad () {
@@ -25,43 +23,40 @@ class NuevoProducto {
   }
 const listaProductos = []
 
-//Ciclo para agregar productos con dato de costo y precio. Funcion margenRentabilidad calcula el margen y la rentabilidad con los datos ingresados
-function cuestionario () {
-    while (respuesta) {
-        nombreProd = prompt ("Ingrese el nombre del producto: ");
+const form = document.querySelector('#form');
+form.addEventListener('submit', enviarFormulario);
 
-        for (const p of listaProductos) {
-            yaExiste = listaProductos.some (p => this.nombre === nombreProd);
-            while (yaExiste) {
-                alert ("El producto ingresado ya existe. Intente con otro nombre.");
-                nombreProd = prompt ("Ingrese el nombre del producto: ");
-                yaExiste = listaProductos.some (p => this.nombre === nombreProd);
-            }
-        }    
-        if (nombreProd === '') {
-            respuesta = false
-        } else {
-            costo = parseFloat(prompt ("Ingrese el costo del producto " + nombreProd));
-            while (isNaN(costo)) {
-                alert("No está ingresando un valor válido, vuelva a intentarlo");
-                costo = parseFloat(prompt ("Ingrese el costo del producto " + nombreProd));
-            }
-            precio = parseFloat(prompt ("Ingrese el precio de venta del producto " + nombreProd));
-            while (isNaN(precio)) {
-                alert("No está ingresando un valor válido, vuelva a intentarlo");
-                precio = parseFloat(prompt ("Ingrese el precio de venta del producto " + nombreProd));
-            }         
-            margenRentabilidad ();
-            nombre = nombreProd;
-            const prod = new NuevoProducto (nombre.toUpperCase(), costo, precio, margen, rentabilidad)
-            listaProductos.push(prod)
-        }      
-    }    
+function enviarFormulario (e) {
+    e.preventDefault();
+    nombreProd = document.querySelector('#nombreProd');
+    nombre = nombreProd.value
+    costoProd = document.querySelector('#costoProd');
+    costo = parseFloat(costoProd.value);
+    
+    precioProd = document.querySelector('#precioProd');
+    precio = parseFloat(precioProd.value);
+    margenRentabilidad ();
+   
+    const prod = new NuevoProducto (nombre, costo, precio, margen, rentabilidad)
+    listaProductos.push(prod)
+    console.log("Lista completa: ")
+    console.log(listaProductos);
 }
-cuestionario ();
+console.log(listaProductos.length)
+if (listaProductos.length == 0) {
+    let aviso = document.createElement ("p");
+    aviso.innerHTML = ("Aún no hay productos cargados");
+    document.body.appendChild(aviso);
+} else {
+    let aviso = document.createElement ("p");
+    aviso.innerHTML = ("Mira la consola");
+    document.body.appendChild(aviso);
+}
+
 
 //Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
-const listaChica = listaProductos.map((item) => {
+
+/*const listaChica = listaProductos.map((item) => {
     return {
         nombre: item.nombre,
         margen: item.margen, 
@@ -78,12 +73,11 @@ function porNombre(prod1, prod2) {
         result = 0
     }
     return result
-}
-const listaChicaAlfabetico = listaChica.toSorted(porNombre)
-console.log (prueba);
+} 
+const listaChicaAlfabetico = listaChica.toSorted(porNombre)*/
+
 //Se muestra la lista de productos ingresados 
-console.log("Lista completa: ")
-console.log(listaProductos);
+
 //Se muestra lista de margen y rentabilidad de productos ordenados alfabéticamente
-console.log("Lista de margen y rentabilidad: ")
-console.log(listaChicaAlfabetico);
+//console.log("Lista de margen y rentabilidad: ")
+//console.log(listaChicaAlfabetico); 
