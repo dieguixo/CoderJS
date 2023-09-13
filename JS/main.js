@@ -1,10 +1,17 @@
 // Pre Entrega 3 - Diego Mata  
 // Se definen variables globales
-
 let costo;
 let precio;
 let margen;
 let rentabilidad;
+
+const formIngreso = document.querySelector('#formIngreso')
+const inputProducto = document.querySelector('#inputProd')
+const inputCosto = document.querySelector('#inputCosto')
+const inputPrecio = document.querySelector('#inputPrecio')
+const listaProd = document.querySelector('#listaProd')
+
+const listaProductos = []
 
 //función para el cálculo del margen y de la rentabilidad de los productos a ingresar
 function margenRentabilidad () {
@@ -21,48 +28,35 @@ class NuevoProducto {
       this.rentabilidad = rentabilidad
     }
   }
-const listaProductos = []
-
-const form = document.querySelector('#form');
-form.addEventListener('submit', enviarFormulario);
-
-function enviarFormulario (e) {
+formIngreso.addEventListener('submit', e => {
     e.preventDefault();
-    nombreProd = document.querySelector('#nombreProd');
-    nombre = nombreProd.value
-    costoProd = document.querySelector('#costoProd');
-    costo = parseFloat(costoProd.value);
-    
-    precioProd = document.querySelector('#precioProd');
-    precio = parseFloat(precioProd.value);
-    margenRentabilidad ();
-   
-    const prod = new NuevoProducto (nombre, costo, precio, margen, rentabilidad)
-    listaProductos.push(prod)
-    console.log("Lista completa: ")
-    console.log(listaProductos);
-}
-console.log(listaProductos.length)
-if (listaProductos.length == 0) {
-    let aviso = document.createElement ("p");
-    aviso.innerHTML = ("Aún no hay productos cargados");
-    document.body.appendChild(aviso);
-} else {
-    let aviso = document.createElement ("p");
-    aviso.innerHTML = ("Mira la consola");
-    document.body.appendChild(aviso);
-}
+    costo = parseFloat(inputCosto.value)
+    precio = parseFloat(inputPrecio.value)  
+    margenRentabilidad ()
+    const nuevoProducto = new NuevoProducto(inputProducto.value, costo, precio, margen, rentabilidad)
+    listaProductos.push(nuevoProducto)
+
+})
+
+
+// salida
 
 
 //Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
 
-/*const listaChica = listaProductos.map((item) => {
+const listaChica = listaProductos.map((item) => {
     return {
         nombre: item.nombre,
         margen: item.margen, 
         rentabilidad: item.rentabilidad
     }
 })
+
+//document.createElement("li")
+console.log(listaProductos)
+console.log(listaChica)
+//listaProd.innerHTML = listaChica
+
 function porNombre(prod1, prod2) {
     let result
     if (prod1.nombre < prod2.nombre) {
@@ -74,7 +68,7 @@ function porNombre(prod1, prod2) {
     }
     return result
 } 
-const listaChicaAlfabetico = listaChica.toSorted(porNombre)*/
+const listaChicaAlfabetico = listaChica.toSorted(porNombre)
 
 //Se muestra la lista de productos ingresados 
 
