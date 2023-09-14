@@ -1,23 +1,20 @@
 // Pre Entrega 3 - Diego Mata  
-// Se definen variables globales
-let costo;
-let precio;
-let margen;
-let rentabilidad;
+let costo
+let rentabilidad
 
 const formIngreso = document.querySelector('#formIngreso')
 const inputProducto = document.querySelector('#inputProd')
 const inputCosto = document.querySelector('#inputCosto')
 const inputPrecio = document.querySelector('#inputPrecio')
-const listaProd = document.querySelector('#listaProd')
+const list = document.querySelector('#cargado')
 
-const listaProductos = []
+let listaProductos = []
+let listaGuardada = localStorage.getItem("listaProductos")
 
-//función para el cálculo del margen y de la rentabilidad de los productos a ingresar
-function margenRentabilidad () {
-    margen = (precio - costo).toFixed(2);
-    rentabilidad = ((margen / costo) * 100).toFixed(2);
+if (listaGuardada) {
+    listaProductos = JSON.parse(listaGuardada)
 }
+
 //Se crea una función constructora de nuevos productos y se delcara un array para contenerlos
 class NuevoProducto {
     constructor (nombre, costo, precio, margen, rentabilidad) {
@@ -28,50 +25,64 @@ class NuevoProducto {
       this.rentabilidad = rentabilidad
     }
   }
+
+  //función para el cálculo del margen y de la rentabilidad de los productos a ingresar
+function margenRentabilidad () {
+    margen = (precio - costo).toFixed(2);
+    rentabilidad = ((margen / costo) * 100).toFixed(2);
+}
+
+mostrarCarga()
+mostrarMargenRentab()
+
+//Acciones que se disparan en el evento "submit" al hacer click en botón "Agregar"
 formIngreso.addEventListener('submit', e => {
     e.preventDefault();
+    if (inputProducto.value == "") {
+        nombre = "Sin nombre"
+    } else {
+        nombre = inputProducto.value
+    }
     costo = parseFloat(inputCosto.value)
     precio = parseFloat(inputPrecio.value)  
     margenRentabilidad ()
-    const nuevoProducto = new NuevoProducto(inputProducto.value, costo, precio, margen, rentabilidad)
+    const nuevoProducto = new NuevoProducto(nombre.toUpperCase(), costo, precio, margen, rentabilidad)
     listaProductos.push(nuevoProducto)
+    localStorage.setItem("listaProductos", JSON.stringify(listaProductos))
+    mostrarCarga()
+    mostrarMargenRentab()
+    inputProducto.value = ""
+    inputCosto.value = ""
+    inputPrecio.value = ""
 
 })
 
-
-// salida
-
-
-//Se declara un nuevo Array para contener la lista reducida con solamente datos de margen y rentabilidad, ordenada alfabeticamente
-
-const listaChica = listaProductos.map((item) => {
-    return {
-        nombre: item.nombre,
-        margen: item.margen, 
-        rentabilidad: item.rentabilidad
+//Función para mostrar los datos que se van cargando en el formulario
+function mostrarCarga() {
+    const cargados = listaProductos.map((item) => {
+        return {
+            nombre: item.nombre,
+            costo: item.costo,
+            precio: item.precio
+        }
+    })
+    
+    let mostrar = document.querySelector('#cargado')
+    for (const item of cargados) {
+        let list = document.createElement("li")
+        list.innerHTML = item.nombre + " -->  costo: "+ item.costo + " precio: " + item.precio
+        mostrar.append(list)
     }
-})
-
-//document.createElement("li")
+}
+//Función para mostrar la lista completa de productos cargados con el cálculo del margen y de la rentabilidad
+function mostrarMargenRentab() {
+    let listaCompleta = document.querySelector('#completa')
+    for (const items of listaProductos) {
+        let menuCompleto = document.createElement("li")
+        menuCompleto.innerHTML = items.nombre + " -- margen: " + items.margen + " -- rentabilidad: " + items.rentabilidad
+        listaCompleta.append(menuCompleto)
+    }
+}
 console.log(listaProductos)
-console.log(listaChica)
-//listaProd.innerHTML = listaChica
 
-function porNombre(prod1, prod2) {
-    let result
-    if (prod1.nombre < prod2.nombre) {
-        result = -1
-    } else if (prod1.nombre > prod2.nombre) {
-        result = 1
-    } else {
-        result = 0
-    }
-    return result
-} 
-const listaChicaAlfabetico = listaChica.toSorted(porNombre)
 
-//Se muestra la lista de productos ingresados 
-
-//Se muestra lista de margen y rentabilidad de productos ordenados alfabéticamente
-//console.log("Lista de margen y rentabilidad: ")
-//console.log(listaChicaAlfabetico); 

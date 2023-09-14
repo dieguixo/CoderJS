@@ -37,3 +37,7 @@ form {
 .campos {
     display: flex;
 }
+.lista li {
+    list-style: none;
+    text-align: center;
+}
