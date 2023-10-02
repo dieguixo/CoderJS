@@ -1,4 +1,4 @@
-// Pre Entrega 3 - Diego Mata  
+// Proyecto final - Diego Mata  
 let costo;
 let rentabilidad;
 
@@ -8,6 +8,8 @@ const inputCosto = document.querySelector('#inputCosto');
 const inputPrecio = document.querySelector('#inputPrecio');
 const list = document.querySelector('#cargado');
 const menuCompleto = document.querySelector('#completa');
+const btnFinalizar = document.querySelector('#campo__finalizar');
+const tituloCompleta = document.querySelector('#tituloCompleta');
 
 let listaProductos = [];
 let listaGuardada = localStorage.getItem("listaStorage");
@@ -52,6 +54,12 @@ formIngreso.addEventListener('submit', e => {
     inputPrecio.value = "";
 
 })
+
+btnFinalizar.addEventListener('submit', e => {
+    e.preventDefault();
+    swal("La carga ha finalizado con éxito!!");
+  })
+
 // ---------   Funciones   ---------
 
 //función para el cálculo del margen y de la rentabilidad de los productos a ingresar
@@ -78,30 +86,12 @@ function validarPrecio () {
 
 function mostrarCarga() {
     let mostrar = document.querySelector('#cargado');
+    tituloCompleta.style.display = 'block';
     list.innerHTML = "";
     let lista = document.createElement("p")
     lista.innerHTML = nombre + " -->  costo: $"+ costo + " precio: $" + precio;
     mostrar.append(lista);
     }
-
-/*
-function mostrarCarga() {
-    const cargados = listaProductos.map((item) => {
-        return {
-            nombre: item.nombre,
-            costo: item.costo,
-            precio: item.precio,
-        }
-    })
-    let mostrar = document.querySelector('#cargado');
-    list.innerHTML = "";
-    for (const item of cargados) {
-        let list = document.createElement("li")
-        list.innerHTML = item.nombre + " -->  costo: $"+ item.costo + " precio: $" + item.precio;
-        mostrar.append(list);
-    }
-}
-*/
 
 function mostrarMargenRentab() {
     let listaCompleta = document.querySelector('#completa');
